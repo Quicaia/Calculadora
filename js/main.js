@@ -6,7 +6,7 @@ const currentOperationText = document.querySelector("#current-operation");
 const buttons = document.querySelectorAll("#buttons-container button");
 
 
-class Calcultor {
+class Calculator {
     constructor(previousOperationText, currentOperationText) {
         
         // 1º Atribui os elementos do DOM às propriedades da classe
@@ -21,10 +21,6 @@ class Calcultor {
 
 
     }
-
-
-
-
     // 2º Métodos da classe para manipular as operações
     addDigit(digit) { //Metodo para adicionar dígitos à operação atual
 
@@ -43,6 +39,7 @@ class Calcultor {
 
     // Processar todas operações da calculadora
     processOperation(operation) { // Método para processar a operação atual
+        //Chec
       
         //Buscar operação atual e anterior
 
@@ -74,7 +71,7 @@ class Calcultor {
 
     }
 
-
+    
     // Método para atualizar a tela com a operação atual
     updateScreen(
         operationValue = null, 
@@ -98,10 +95,19 @@ class Calcultor {
 
   }
 
-  const calc = new Calcultor(previousOperationText, currentOperationText); // Instancia a classe Calcultor
+}
+
+                                                        
+                //fim class Calculator
+
+// 1º Cria uma instância da classe Calculator passando os elementos do DOM
+// que serão atualizados com os resultados das operações
+   const calc = new Calculator(previousOperationText, currentOperationText); // Instancia a classe Calcultor
+
+
 
 //1º Eventos de click em cada botão
-buttons.forEach((btn) =>{
+ buttons.forEach((btn) =>{
     // 2º Adiciona um evento de clique a cada botão
     // e exibe o texto do botão no console  
     btn.addEventListener("click", (e) => {
@@ -118,4 +124,4 @@ buttons.forEach((btn) =>{
 
 
     });
-}) 
+});
