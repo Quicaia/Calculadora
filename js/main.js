@@ -39,7 +39,15 @@ class Calculator {
 
     // Processar todas operações da calculadora
     processOperation(operation) { // Método para processar a operação atual
-        //Chec
+        
+        //Verificar se o current esta
+        if(this.currentOperationText.innerText === "" && operation !== "C") {
+            // Se a operação atual estiver vazia, não faz nada
+            if(this.previousOperationText.innerText !== "") {
+                this.changeOperation(operation); // Se houver uma operação anterior, troca a operação
+            }
+            return; // Sai do método se não houver operação atual
+        }
       
         //Buscar operação atual e anterior
 
@@ -65,6 +73,18 @@ class Calculator {
                 operationValue = previous / current; // Divisão
                this.updateScreen(operationValue, operation, current, previous);
                 break;
+            case "DEL":
+              this.processDelOperation
+            break;
+             case "CE":
+              this.processClierOperation();
+            break;
+            case "C":
+              this.processClierallOperation();
+            break;
+            case "=":
+              this.processEqualOperator();
+            break;
             default:
                 return; // Se a operação não for reconhecida, não faz nada
         }
@@ -95,8 +115,49 @@ class Calculator {
 
   }
 
-}
+        changeOperation(operation){
+            // Método para trocar a operação atual
+            const mahtOperations = ["+", "-", "*", "/"]; // Lista de operações válidas
 
+            if(!mahtOperations.includes(operation)) { // Verifica se a operação é válida
+                return; // Se não for, não faz nada
+            }
+
+
+            // Se a operação for válida, atualiza o texto da operação anterior com a nova operação
+
+
+            // Remove o último caractere e adiciona a nova operação
+            this.previousOperationText.innerText = this.previousOperationText.innerText.slice(0, -1) + operation + " "; 
+           
+        }
+        //Delete ultimo dígito da operação atual
+        processDelOperation(){
+            this.currentOperationText.innerText = this.currentOperationText.innerText.slice(0, -1); // Remove o último dígito da operação atual
+        }
+
+
+        //Limpa a operação atual e anterior
+        processClierOperation(){
+            this.currentOperationText.innerText = ""; // Limpa a operação atual
+        }
+
+        //Limpa todas as operações
+        processClierallOperation(){
+            this.currentOperationText.innerText = ""; // Limpa a operação atual
+            this.previousOperationText.innerText = ""; // Limpa a operação anterior
+        }
+
+        //Processa o operador de igual
+        processEqualOperator(){
+            
+            const operation = previousOperationText.innerText.split(" ")[1]; // Obtém o operador da operação anterior
+
+            this.processOperation(operation); // Chama o método processOperation com o operador
+
+        }
+
+}
                                                         
                 //fim class Calculator
 
